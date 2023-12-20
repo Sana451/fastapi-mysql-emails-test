@@ -16,11 +16,15 @@
 4. Оформить всё в Docker
 
 # Инструкция по развёртыванию
-Скачать исходный код проекта: `git clone https://github.com/Sana451/restaurant_fastapi_celery.git`    
-Перейти в папку с проектом: `cd restaurant_fastapi_celery/`    
+Скачать исходный код проекта: `git clone https://github.com/Sana451/fastapi-mysql-emails-test.git`    
+Перейти в папку с проектом: `cd fastapi-mysql-emails-test/`    
 Произвести сборку проекта: `docker compose build`    
 Создать и запустить контейнеры: `docker compose up`    
 
 ## Проверка работы
-Запустить тесты POSTMAN или тестировать API вручную    
-[Swagger автоматическая документация: http://127.0.0.1:8000/docs#/](http://127.0.0.1:8000/docs#/)
+После запуска контейнеров Docker перейти по URL: [http://127.0.0.1:8000/docs#/](http://127.0.0.1:8000/docs#/)
+Создать пункты справочников Car, City, Profession (endpoints: create_car, create_city, create_profession).
+Создать пользователя User (endpoint: create_user). Обратите внимание, что значениями справочников Car, City и Profession
+могут быть только предварительно созданные экземпляры (ограничение внешнего ключа).
+Проверить работу фильтрации пользователей (endpoint: read_user_list_filter).
+Перейти по URL для проверки работы web-формы [http://127.0.0.1:8000/email-form/](http://127.0.0.1:8000/email-form/).
