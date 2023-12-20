@@ -1,0 +1,124 @@
+<html>
+<head>
+    <title>Item Details</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        .col-3 {
+          height: 180px;
+          width: 13.0%;
+          margin: .10rem;
+        }
+
+        .row {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            align-content: center;
+        }
+
+        select {
+            width: 200px;
+        }
+        table {
+          border-collapse: collapse;
+        }
+        td,
+        th {
+          border: 1px solid black;
+          padding: 10px 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<h2>На сайте зарегистрированы следующие пользователи:</h2>
+<table>
+    <tr>
+        <th>Имя пользователя</th>
+        <th>Email</th>
+        <th>Авто</th>
+        <th>Город</th>
+        <th>Профессия</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.car_model}}</td>
+        <td>{{user.live_city}}</td>
+        <td>{{user.type_profession}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Выберите категории пользователей, для отправки сообщений:</h2>
+<p>(при отсутствии выбранных категорий письма отправляются всем зарегистрированным пользователям из списка выше)</p>
+
+<h2>Применить фильтр для отправки сообщений конкретным категориям пользователей</h2>
+<p>(или задать значение фильтра вручную)</p>
+
+<form action="{{ request.url }}" method="post" class="form-example">
+
+    <div class="row">
+
+        <div class="col-3">
+            <select name="find_car" size="8">
+                <option selected>Выберите марку автомобиля</option>
+                <option value="Jeep Grand Cherokee WK2">Jeep Grand Cherokee WK2</option>
+                <option>Jeep Wrangler</option>
+                <option>BMW x6</option>
+                <option>Audi a4</option>
+                <option>Mercedes ML300</option>
+                <option>Opel Astra gtc</option>
+                <option>Ferrari SF90 STRADALE</option>
+                <input type="text" name="input_car" value="или введите вручную">
+            </select>
+
+        </div>
+
+        <div class="col-3">
+            <select name="find_pro" size="8">
+                <option selected>Выберите профессию</option>
+                <option value="Developer">Developer</option>
+                <option>Musician</option>
+                <option>Programmer</option>
+                <option>Dealer</option>
+                <option>Doctor</option>
+                <option>Businessman</option>
+                <option>Sportsman</option>
+                <input type="text" name="input_pro" value="или введите вручную">
+            </select>
+        </div>
+
+        <div class="col-3">
+            <select name="find_city" size="8">
+                <option selected>Выберите город проживания</option>
+                <option value="Moscow">Moscow</option>
+                <option>Saint-Petersburg</option>
+                <option>New York</option>
+                <option>Los Angeles</option>
+                <option>London</option>
+                <option>Milan</option>
+                <option>Roma</option>
+                <input type="text" name="input_city" value="или введите вручную">
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-message">
+        <label for="message">Введите текст сообщения:</label>
+        <input type="text" name="message" id="message" required/>
+    </div>
+
+    <div class="form-message">
+        <input type="submit" value="Отправить"/>
+    </div>
+</form>
+</body>
+</html>
